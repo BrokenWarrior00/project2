@@ -1,225 +1,880 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Project X11 is my personal portfolio, sharing my thoughts, ambitions and journey.">
+
+    <meta name="description" content="Project X11 is my personal Portfolio.">
+
 
     <meta name="author" content="Project X11">
 
+
     <title>Project X11 | Personal Portfolio</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        nav a {
-            display: inline-block;
-            padding: 12px 16px;
-            margin: 4px;
+
+        *{
+            box-sizing: border-box;
         }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            margin: 0;
+            min-height:100vh;
+            padding:20px;
+
+            background:
+                linear-gradient(
+                    rgba(13,13,13,0.15),
+                    rgba(13,13,13,0.35)
+                ),
+                url("background.webp") center 20% / cover no-repeat;
+
+            background-color: #e8e2d5;
+            color: #C5C1B8;
+            font-family: Arial,sans-serif;
+            line-height: 1.7;
+        }
+
+        .container>header{
+            display:flex;
+            justify-content:space-between;
+            align-items:flex-start;
+            gap:24px;
+            padding:10px 0 20px;
+        }
+
+        .container>header nav{
+            margin-left:auto;
+        }
+
+        .container>header h2{
+            color: #E8E2D5;
+            font-family: "Cormorant Garamond", Georgia,serif;
+            font-size:28px;
+            font-weight:500;
+            line-height:1;
+            margin:0;
+        }
+
+        .container>header nav ul{
+            display:flex;
+            align-items:center;
+            justify-content:flex-end;
+            flex-wrap:wrap;
+            gap:16px;
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+
+        .container>header nav a{
+            position:relative;
+            color:#C5C1B8;
+            text-decoration:none;
+            font-size:14px;
+            transition:color 0.3s ease;
+        }
+
+        .container>header nav a:hover{
+            color:#E8E2D5;
+        }
+
+        .container > header nav a:not(.contact)::after{
+            content:"";
+            position:absolute;
+            left:0;
+            bottom:-5px;
+            width:100%;
+            height:1px;
+            background-color:#85817A;
+            transform: scaleX(0);
+            transform-origin:left;
+            transition:transform 0.3s ease;
+        }
+
+        .container>header nav a:not(.contact):hover::after{
+            transform:scaleX(1);
+        }
+
+        .container>header nav a.contact{
+            display:inline-block;
+            padding:12px 18px;
+            border:1px solid transparent;
+            border-radius: 30px;
+            background-color:#E8E2D5;
+            color: #0D0D0D;
+            transition:background-color 0.3s ease,
+                       color 0.3s ease,
+                       border-color 0.3s ease;
+        }
+
+        .container>header nav a.contact:hover{
+            background-color:transparent;
+            color:#E8E2D5;
+            border-color: #85817A;
+        }
+
+        #home{
+            display:grid;
+            grid-template-columns: minmax(0,1.1fr) minmax(260px,0.9fr);
+            grid-template-areas:
+                "intro image"
+                "description image"
+                "link image";
+            align-items:center;
+            column-gap:45px;
+            padding:50px 0;
+        }
+
+        #home>header{
+            grid-area:intro;
+        }
+
+        #home>p:first-of-type{
+            grid-area:description;
+        }
+
+        #home>figure{
+            grid-area:image;
+            margin:0;
+        }
+
+        #home>p:last-of-type{
+            grid-area:link;
+        }
+
+        #home >header>p{
+            color: #85817A;
+            font-size:14px;
+            letter-spacing:3px;
+            line-height:1.6;
+            text-transform:uppercase;
+            margin:0 0 20px;
+        }
+
+        #home h1{
+            color:#E8E2D5;
+            font-family: "Cormorant Garamond", Georgia,serif;
+            font-size:clamp(42px,5vw,58px);
+            font-weight:500;
+            line-height:0.98;
+            letter-spacing:-1px;
+            margin:0 0 25px;
+        }
+
+        #home>p{
+            color: #C5C1B8;
+            font-size:16px;
+            line-height:1.8;
+            max-width:420px;
+            margin:0 0 25px;
+        }
+
+        #home figure img{
+            display:block;
+            width:100%;
+            max-width:420px;
+            height:auto;
+            margin:0 auto;
+            border-radius:20px;
+            border:1px solid #45433F;
+            filter:saturate(0.9);
+            transition:filter 0.3s ease;
+        }
+
+        #home figure img:hover{
+            filter:saturate(1);
+        }
+
+        #home figcaption{
+            color:#85817A;
+            font-size:13px;
+            text-align:center;
+            margin-top:10px;
+        }
+
+        #home .hero-link{
+            display:inline-block;
+            color:#E8E2D5;
+            text-decoration:none;
+            border-bottom:1px solid #85817A;
+            padding-bottom:8px;
+            font-size:14px;
+            transition:color 0.3s ease,
+                       border-color 0.3s ease;
+        }
+
+        #home .hero-link:hover{
+            color: #FFFFFF;
+            border-color:#E8E2D5;
+        }
+
+        .container{
+            width:100%;
+            max-width:1000px;
+            margin:0 auto;
+            padding:20px;
+            background-color:rgba(13,13,13,0.68);
+            border:1px solid #333333;
+            border-radius:30px;
+        }
+
+        .content{
+            width:100%;
+            max-width:950px;
+            margin:40px auto;
+            padding:40px;
+            background-color:rgba(13, 13, 13,0.82);
+            border:1px solid rgba(197, 193,184,0.16);
+            border-radius:20px;
+        }
+
+        .content section{
+            padding:35px 0;
+            border-bottom:1px solid #45433F;
+        }
+
+        .content section:last-child{
+            border-bottom:none;
+        }
+
+        .content h2{
+            color:#E8E2D5;
+            font-family:"Cormorant Garamond",Georgia,serif;
+            font-size:32px;
+            font-weight:500;
+            letter-spacing:1px;
+            margin:0 0 20px;
+        }
+
+        .content p,
+        .content li{
+            color:#C5C1B8;
+            font-size:16px;
+            line-height:1.9;
+        }
+
+        .content ul,
+        .content ol{
+            padding-left:25px;
+        }
+
+        .content li{
+            padding:5px 0;
+        }
+
+        .content a{
+            color:#E8E2D5;
+            text-decoration-color:#85817A;
+            text-underline-offset:5px;
+            transition:color 0.3s ease;
+        }
+
+        .content a:not(.work-place):hover{
+            color: #FFFFFF;
+        }
+
+        .work-place{
+            display:inline-block;
+            align-items:center;
+            justify-content:center;
+            padding:10px 18px;
+            font-size:14px;
+            line-height:1.2;
+            white-space:nowrap;
+            background-color:#E8E2D5;
+            color:#0D0D0D;
+            text-decoration:none;
+            border:1px solid #E8E2D5;
+            border-radius:30px;
+            transition:background-color 0.3s ease-in-out,
+                       color 0.3s ease-in-out,
+                       border-color 0.3s ease-in-out;
+        }
+
+        .work-place,
+        #contact button,
+        .contact{
+            position:relative;
+            overflow:visible;
+        }
+
+        .work-place::after,
+        #contact button::after,
+        .contact::after{
+            content:"";
+            position:absolute;
+            left:0;
+            bottom:-9px;
+            width:100%;
+            height:1px;
+            background-color:#E8E2D5;
+            transform:scaleX(0);
+            transform-origin:left;
+            transition:transform 0.6s ease-in-out;
+        }
+
+        .work-place:hover{
+            background-color:transparent;
+            color:#E8E2D5;
+        }
+
+        .work-place:hover::after,
+        #contact button:hover::after,
+        .contact:hover::after{
+            transform:scaleX(1);
+        }
+
+        #contact h3{
+            color:#E8E2D5;
+            font-family:"Cormorant Garamond",Georgia,serif;
+            font-size:24px;
+            font-weight:500;
+            margin:30px 0 15px;
+        }
+
+        #contact fieldset{
+            border:1px solid #45433F;
+            border-radius:15px;
+            padding:25px;
+            background-color:rgba(13,13,13,0.35);
+        }
+
+        #contact legend{
+            color:#E8E2D5;
+            font-family:"Cormorant Garamond",Georgia,serif;
+            font-size:20px;
+            padding:0 10px;
+        }
+
+        #contact fieldset div{
+            margin-bottom:20px;
+        }
+
+        #contact label{
+            display:block;
+            color:#C5C1B8;
+            font-size:14px;
+            margin-bottom:8px;
+        }
+
+        #contact input,
+        #contact textarea{
+            display:block;
+            width:100%;
+            padding:12px 15px;
+            background-color:#1A1917;
+            color:#E8E2D5;
+            border:1px solid #45433F;
+            border-radius:8px;
+            font-family:Arial,sans-serif;
+            font-size:15px;
+            transition:border-color 0.3s ease,
+                       background-color 0.3s ease;
+        }
+
+        #contact input:focus,
+        #contact textarea:focus{
+            outline:none;
+            border-color:#85817A;
+            background-color:#22201D;
+        }
+
+        #contact textarea{
+            resize:vertical;
+            min-height:120px;
+        }
+
+        #contact button{
+            padding:12px 22px;
+            background-color:#E8E2D5;
+            color:#0D0D0D;
+            border:1px solid #E8E2D5;
+            border-radius:30px;
+            font-size:14px;
+            cursor:pointer;
+            position:relative;
+            overflow:visible;
+            transition:background-color 0.3s ease,
+                       color 0.3s ease,
+                       border-color 0.3s ease;
+        }
+
+        #contact button::after{
+            content:"";
+            position:absolute;
+            left:0;
+            bottom:-9px;
+            width:100%;
+            height:1px;
+            background-color:#E8E2D5;
+            transform:scaleX(0);
+            transform-origin:left;
+            transition:transform 0.6s ease-in-out;
+        }
+
+        #contact button:hover::after{
+            transform:scaleX(1);
+        }
+
+        #contact button:hover{
+            background-color:transparent;
+            color:#E8E2D5;
+            border-color:#85817A;
+        }
+
+        .content a.work-place{
+            display:inline-block;
+            padding:10px 18px;
+            font-size:14px;
+            line-height:1.2;
+            white-space:nowrap;
+            background-color:#E8E2D5;
+            color:#0D0D0D;
+            text-decoration:none;
+            border:1px solid #E8E2D5;
+            border-radius:30px;
+            transition:background-color 0.3s linear,
+                       color 0.3s linear,
+                       border-color 0.3s linear;
+        }
+        .content a.work-place:hover{
+            background-color:transparent;
+            color:#E8E2D5;
+            border-color:#85817A;
+        }
+
+        .footer-note{
+            margin:30px 0 0;
+            padding-top:20px;
+            border-top:1px solid #33312D;
+            color:#85817A;
+            font-size:13px;
+            letter-spacing:1px;
+            text-align:center;
+        }
+
+        .goal-list{
+            list-style:none;
+            padding:0;
+            margin:0;
+        }
+
+        .goal-list li{
+            display:flex;
+            align-items:baseline;
+            gap:18px;
+            padding:18px;
+            border-bottom:1px solid #33312D;
+            transition:padding-left 0.3s ease;
+        }
+
+        .goal-list li:last-child{
+            border-bottom:none;
+        }
+
+        .goal-number{
+            color:#85817A;
+            font-size:13px;
+            letter-spacing:1px;
+            min-width:24px;
+        }
+
+        .goal-list li span:last-child{
+            color:#C5C1B8;
+        }
+
+        .goal-list li:hover{
+            padding-left:26px;
+        }
+
+        @media(max-width:900px) and (min-width:769px){
+
+            #home{
+                column-gap:25px;
+            }
+
+            #home h1{
+                font-size:48px;
+            }
+
+            #home figure img{
+                max-width:340px;
+            }
+
+            .content{
+                padding:30px;
+            }
+        }
+
+        @media(max-width:768px){
+
+            body{
+                padding:10px;
+            }
+
+            .container>header{
+                flex-wrap:wrap;
+                gap:20px;
+            }
+
+            .container>header h2{
+                font-size:30px;
+            }
+
+            .container>header nav{
+                width:100%;
+                margin-left:0;
+            }
+
+            .container>header nav ul{
+                justify-content:flex-end;
+                flex-wrap:wrap;
+                gap:14px;
+            }
+
+            #home{
+                grid-template-columns:1fr;
+                grid-template-areas:
+                    "intro"
+                    "description"
+                    "image"
+                    "link";
+                row-gap:20px;
+                padding:35px 0;
+            }
+
+            #home h1{
+                font-size:clamp(40px,9vw,58px);
+            }
+
+            #home figure img{
+                max-width:300px;
+            }
+
+            .content{
+                margin:20px auto;
+                padding:22px;
+                border-radius:16px;
+            }
+
+            .content h2{
+                font-size:26px;
+            }
+
+        }
+        @media (max-width:480px){
+
+            .container>header h2{
+                font-size:28px;
+            }
+
+            .container>header{
+                flex-wrap:wrap;
+                gap:20px;
+            }
+
+            .container>header nav{
+                width:100%;
+                margin-left:0;
+            }
+
+            .container>header nav ul{
+                justify-content:flex-end;
+                gap:12px;
+            }
+
+            .container>header nav a{
+                font-size:13px;
+            }
+
+            #home h1{
+                letter-spacing:-1px;
+            }
+
+            #home figure img{
+                max-width:100%;
+            }
+
+            .content{
+                padding:18px;
+            }
+
+            .content h2{
+                font-size:24px;
+            }
+        }
+
     </style>
 </head>
 
 <body>
 
-    <a href="#main-content">Skip to main content</a>
-
-    <header>
-
-        <h1>Chaos</h1>
-
-        <nav aria-label="Main navigation">
-
-            <ul>
-                <li><a href="#home" aria-current="page">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#ambitions">Ambitions</a></li>
-                <li><a href="#school-of-thought">Thought</a></li>
-                <li><a href="#contact">Get in touch</a></li>
-            </ul>
-
-        </nav>
-
-    </header>
-
     <main id="main-content">
 
-        <section id="home" aria-labelledby="home-heading">
-
+        <div class="container">
             <header>
 
-                <p>A mind that refuses to kneel.</p>
+                <h2>Chaos</h2>
 
-                <h2 id="home-heading">Will Beyond Restraint.</h2>
+                <nav aria-label="Main navigation">
+
+                    <ul>
+
+                        <li>
+
+                            <a href="#home" aria-current="page">Home</a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#about">About</a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#ambitions">Ambitions</a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#school-of-thought">Thought</a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#contact" class="contact">Get in touch -></a>
+                        </li>
+
+                    </ul>
+                </nav>
 
             </header>
 
-            <p>
-                The world imposes its limits.
-                I choose which ones to challenge.
-                Through hardships, knowledge, and
-                relentless resolve, I forge my own path.
-            </p>
+            <section id="home" aria-labelledby="home-heading">
 
-            <figure>
+                <header>
 
-                <img
-                    src="fang-yuan.webp"
-                    alt="Illustration of Fang Yuan, featured as a role model"
-                    width="735"
-                    height="445"
-                    fetchpriority="high"
-                    decoding="sync">
+                    <p>A mind that refuses to kneel.</p>
 
-                <figcaption>Rolemodel</figcaption>
+                    <h1 id="home-heading">Will Beyond<br> Restraint.</h1>
 
-            </figure>
+                </header>
 
-            <p>
-                <a href="#about">Discover my ideal</a>
-            </p>
+                <p>
+                    The world imposes its limits.
+                    I choose which ones to challenge.
+                    Through hardships, knowledge, and
+                    relentless resolve, I forge  my own path.
+                </p>
 
-        </section>
+                <figure>
 
-        <section id="about" aria-labelledby="about-heading">
+                    <img src="fang-yuan.webp" alt="">
 
-            <h2 id="about-heading">Introduction:</h2>
+                    <figcaption>Rolemodel</figcaption>
 
-            <p>Greetings, gentlemen. I'm desire.</p>
+                </figure>
 
-            <p>
-                I'm still a UG student who had no will to put hardwork
-                into my future.
-            </p>
+                <p>
+                    <a href="#about" class="hero-link">
+                        Discover my ideal
+                    </a>
 
-            <p>
-                That is until tonight where hardships strengthened my
-                resolve strongly to put my mind into it, unlike doing
-                100+ hours watching and taking action later. Still I
-                need to make a living out here soon, so I'm puttin in
-                effort this time (08/10/2026).
-            </p>
+                </p>
+            </section>
+        </div>
+        <div class="content">
+            <section id="about" aria-labelledby="about-heading">
 
-        </section>
+                <h2 id="about-heading">Introduction:</h2>
 
-        <section id="school-of-thought" aria-labelledby="thought-heading">
-
-            <h2 id="thought-heading">Vagabond:</h2>
-
-            <p>
-                Not the orthodox go with the flow way but i do like
-                the unorthodox carve your way through.
-            </p>
-
-        </section>
-
-        <section id="ambitions" aria-labelledby="ambitions-heading">
-
-            <h2 id="ambitions-heading">Ambitions:</h2>
-
-            <p>
-                To live a life with no shortage of hardships and excitements.
-            </p>
-
-        </section>
-
-        <section id="stepping-stones" aria-labelledby="goals-heading">
-
-            <h2 id="goals-heading">My-Goals:</h2>
-
-            <ul>
-                <li>Learn some proper coding through practice</li>
-                <li>Survive these hardships</li>
-                <li>Set the sails</li>
-            </ul>
-
-        </section>
-
-        <section id="why-code" aria-labelledby="why-heading">
-
-            <h2 id="why-heading">Why-Code?</h2>
-
-            <ol>
-                <li>I can make money</li>
-                <li>Sometimes its fun</li>
-                <li>It's obvious because I'm an IT student</li>
-            </ol>
-
-        </section>
-
-        <section id="contact" aria-labelledby="contact-heading">
-
-            <h2 id="contact-heading">Get in Touch</h2>
-
-            <p>For stalkers --&gt;</p>
-
-            <p>
-                <a href="https://www.instagram.com/unknown0919j/">
-                    Instagram Profile
-                </a>
-            </p>
-
-            <h3 id="contact-form-heading">Send me a message</h3>
-
-            <form action="#" method="post" aria-labelledby="contact-form-heading">
-
-                <fieldset>
-
-                    <legend>Contact Information</legend>
+                    <p>Greetings, gentlemen. I'm desire.</p>
 
                     <p>
-                        <label for="name">Your Name:</label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            autocomplete="name"
-                            required>
+                        I'm still a UG student who had no will to put hardwork
+                        into my future.
                     </p>
 
                     <p>
-                        <label for="subject">Subject:</label>
-                        <input
-                            type="text"
-                            id="subject"
-                            name="subject"
-                            required>
+                        That is until tonight where hardships strengthened my resolve strongly to put my mind into it,unlike doing 100+ hours watching and taking action later.Still I need to make a living out here soon, so I'm puttin in effort this time(08 October 2026).
                     </p>
+            </section>
 
-                    <p>
-                        <label for="email">Your Email:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            autocomplete="email"
-                            required>
-                    </p>
+            <section id="school-of-thought" aria-labelledby="thought-heading">
 
-                    <p>
-                        <label for="message">Your Message:</label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="5"
-                            required></textarea>
-                    </p>
+                    <h2 id="thought-heading">Vagabond:</h2>
 
-                    <button type="submit">Send Message</button>
+                    <p>Not the orthodox go with the flow way but i do like the unorthodox carve your way through.</p>
 
-                </fieldset>
+            </section>
 
-            </form>
+            <section id= "ambitions" aria-labelledby="ambitions-heading">
 
-        </section>
+                <h2 id="ambitions-heading">Ambitions:</h2>
+
+                <p>To live a life with no shortage of hardships and excitements .</p>
+
+            </section>
+
+            <section id="stepping-stones" aria-labelledby="goals-heading">
+
+                <h2 id="goals-heading">My-Goals:</h2>
+
+                <ul class="goal-list">
+
+                    <li>
+                        <span class="goal-number">01</span>
+                        <span>Learn some proper coding through practice</span>
+                    </li>
+
+                    <li>
+                        <span class="goal-number">02</span>
+                        <span>Survive these hardships</span>
+                    </li>
+
+                    <li>
+                        <span class="goal-number">03</span>
+                        <span>Set the sails</span>
+                    </li>
+
+                </ul>
+
+            </section>
+
+            <section id="why-code" aria-labelledby="why-heading">
+
+                <h2 id="why-heading">Why-Code?</h2>
+
+                <ol class="goal-list">
+
+                    <li>
+                        <span class="goal-number">01</span>
+                        <span>I can make money</span>
+                    </li>
+                    <li>
+                        <span class="goal-number">02</span>
+                        <span>Sometimes its fun</span>
+                    </li>
+                    <li>
+                        <span class="goal-number">03</span>
+                        <span>It's obvious because I'm an IT student</span>
+                    </li>
+                </ol>
+
+            </section>
+
+        </div>
+
+        <div class="content">
+
+            <section id="contact" aria-labelledby="contact-heading">
+
+                <h2 id="contact-heading">Get in Touch</h2>
+
+                <p>For stalkers -->
+
+                    <a href="https://www.instagram.com/unknown0919j/"
+                       class="work-place"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                       Instagram Profile
+                    </a>
+                </p>
+
+                <h3 id="contact-form-heading">Send me a message</h3>
+
+                <form action="#" method="post" aria-labelledby="contact-form-heading">
+
+                    <fieldset>
+
+                        <legend>Contact Information</legend>
+
+                        <div>
+
+                            <label for="name">Your Name:</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                autocomplete="name"
+                                required>
+                        </div>
+
+                        <div>
+
+                            <label for="subject">Subject:</label>
+                            <input
+                                type="text"
+                                id="subject"
+                                name="subject"
+                                required>
+                        </div>
+
+
+                        <div>
+
+                            <label for="email">Your Email:</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                autocomplete="email"
+                                required>
+                        </div>
+
+                        <div>
+
+                            <label for="message">Your Message:</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="5"
+                                required></textarea>
+                        </div>
+
+                        <button type="submit">Send Message</button>
+
+                    </fieldset>
+
+                </form>
+            </section>
+        </div>
 
     </main>
 
     <footer>
 
-        <p>Do as you please.</p>
+        <p class="footer-note">
+            Hardships strengthen resolve.
+        </p>
 
-        <p>&copy; 2026 Project X11. All rights reserved.</p>
+        <p>
+            &copy; 2026 Project X11. All rights reserved.
+        </p>
 
     </footer>
 
